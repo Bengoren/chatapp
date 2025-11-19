@@ -1,12 +1,22 @@
 from flask import Flask, send_file, request, jsonify
 from datetime import datetime
+import mysql.connector
 import os
 
-app = Flask(__name__)
+host = os.getenv("DB_HOST")
+user = os.getenv("DB_USER")
+password = os.getenv("DB_PASSWORD")
+database = os.getenv("DB_NAME")
+def get_connection():
+    connection = mysql.connector.connect(
+        host=host,
+        user=user,
+        password=password,
+        database=database
+    )
+    return connection
 
-# Ensure chats directory exists
-if not os.path.exists("chats"):
-    os.makedirs("chats")
+app = Flask(__name__)
 
 # Serve index.html for root
 @app.route('/')
