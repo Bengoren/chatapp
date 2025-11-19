@@ -6,5 +6,15 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+
+
+@app.get("/<room>")
+def serve_room(room):
+    return send_file("index.html")
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+
