@@ -16,7 +16,8 @@ def serve_room(room):
 @app.route('/api/chat/<room>')
 def get_chat(room):
     # Path to the chat file for this room
-    chat_file = f'chats/{room}.txt'
+    chat_file = f'chats/{room}'
+    return send_file(chat_file)
 
 
 
